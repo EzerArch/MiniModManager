@@ -1,10 +1,18 @@
 # (c) EZER'ARCH - Python script
-# This creates a GUI-less mod manager. YAY!
+# This creates a GUI-less mod manager. Main runtime.
+# Released under MIT License
+# TO-DO:
+# 1) Config files must be txt
+# 2) Create config by "current status" in mod directory.
+# 3) Code duplication. Make it simple.
+# 4) Documentation
+# 3) Get rid of EasyGUI.
+# 4) Modularity.
 
 # Simple
 print ("\nThis is a Python application.")
 print ("Created by: Ezer'Arch (www.ezerarch.com)")
-print ("Date: 2013/10/23")
+print ("Creation date: 2013/10/23")
 
 #### LIBS
 
@@ -68,6 +76,12 @@ def readCfg( path ):
 # DEF: rename all files not found in lst_files to -str_suffix
 
 def renFiles( path, lst_files, lst_files_filter, str_suffix ):
+    """
+path: the path where the function will take place
+lst_files: list of files
+lst_files_filter: list of files to be filtered out
+str_suffix: file extension sufix
+"""
     # Prompt
     print( "\n-- Renaming files --" )
     print( "Files from the config: " )
@@ -168,7 +182,7 @@ option = input( '''\nSelect an option:
 4 = Open MiniModManager directory in the file manager
 5 = Open Mods directory in the file manager
 6 = Open Saves directory in the file manager
-7 = (NOT WORKING) Block all files
+7 = Block all files
 ENTER = Exit
 Enter the number for the option: ''' )
 
@@ -223,6 +237,14 @@ elif option == '6':
     print( 'Opening Saves directory in your file manager...' )
     print( '>>>' )
     subprocess.Popen('explorer ' + path_sav)
+    print( 'Done!' )
+
+elif option == '7':
+    # block all files
+    print( 'Blocking all files...' )
+    # List the files
+    lst_files = listFiles( path_mod, file_exts ) # list all files in the directory
+    renFiles( path_mod, lst_files, lst_files, 'X' ) # rename files with 'X' in the end
     print( 'Done!' )
 
 else:
