@@ -24,6 +24,16 @@ import easygui as eg
 
 #### FUNCTIONS
 
+# DEF: generic error
+
+def err():
+    """
+Generic error to be displayed to the user.
+"""
+    print( "***Error: Check if Minecraft is running with mods, or if there's duplicate files!***")
+    pass
+    
+
 # DEF: list and select the config
 
 def cfgMan( path ):
