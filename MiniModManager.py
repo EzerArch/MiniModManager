@@ -31,7 +31,7 @@ def err():
     """
 Generic error to be displayed to the user.
 """
-    print( "***Error: Check if Minecraft is running with mods, or if there's duplicate files!***")
+    print( "***Error: Check if Minecraft is running with mods or if there are duplicate files!***")
     pass
     
 
