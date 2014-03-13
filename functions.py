@@ -2,25 +2,19 @@
 # This creates a GUI-less mod manager. Main runtime.
 # Released under MIT License
 # TO-DO:
-# 1) Config files must be txt
-# 2) Create config by "current status" in mod directory.
-# 3) Code duplication. Make it simple.
-# 4) Documentation
-# 3) Get rid of EasyGUI.
-# 4) Modularity.
+# (nothing yet)
+
+# FUNTIONS LIB
 
 # Simple
-print ("\nThis is a Python application.")
-print ("Created by: Ezer'Arch (www.ezerarch.com)")
-print ("Creation date: 2013/10/23")
+print ("\nFunction.")
 
 #### LIBS
 
 import os
 import glob
 import subprocess
-import easygui as eg # EasyGUI
-#import functions as mmm # MMM functions
+import easygui as eg
 
 
 #### FUNCTIONS
@@ -148,120 +142,4 @@ def createCfg( pathdir_mod , file_exts ):
     else:
         print( "No CFG was created/edited." )
 
-
-#### VARIABLES
-
-# Paths
-path_app = os.getenv('APPDATA') # get appdata path
-path_sav = os.path.join( path_app, '.minecraft\\saves' ) # make saves path
-path_mod = os.path.join( path_app, '.minecraft\\mods' ) # make mod path
-path_man = os.path.join( path_mod, 'MiniModManager' ) # make MiniModManager path
-
-
-# File extensions
-file_exts = ('.jar', '.zip') # files to be renamed
-file_exts_x = ('.jarX', '.zipX') # files to be renamed back
-
-
-#### EXECUTION
-
-# HELLO WORLD!
-print( '\nInitializing...')
-
-# Check for folders
-if os.path.exists( path_mod ): # mod directory
-    print( 'Minecraft Mod directory found...' )
-else:
-    print( 'Minecraft Mod directory NOT found!' )
-
-if os.path.exists( path_man ): # manager directory
-    print( 'MiniModManager directory found...' )
-else:
-    print( 'MiniModManager directory was not found! Creating one in Minecraft\Mods.' )    
-    os.makedirs( path_man ) # create manager directory
-
-# Message
-print( "\n*** MiniModManager is ready ***\nThis is a GUI-less mod manager that blocks files that shouldn't be loaded." )
-input( "\nHit ENTER to proceed: " )
-
-
-# Options
-option = input( '''\nSelect an option:
-1 = Use a config
-2 = Unblock all files
-3 = Create a config
-4 = Open MiniModManager directory in the file manager
-5 = Open Mods directory in the file manager
-6 = Open Saves directory in the file manager
-7 = Block all files
-ENTER = Exit
-Enter the number for the option: ''' )
-
-if option == '1':
-    # check for *X-files
-    files = listFiles( path_mod, file_exts_x ) # files to rename back
-    if files:
-        print( 'Your mod folder contains remaned files! Renaming them back... ' )
-        renFiles_back( path_mod, files, file_exts_x )
-
-    # Init CFG manager
-    path_cfg = cfgMan( path_man )
-
-    if path_cfg:
-        # List the files
-        lst_files = listFiles( path_mod, file_exts ) # list all files in the directory
-        # Rename files
-        lst_files_filter = readCfg( path_cfg ) # open cfg
-        renFiles( path_mod, lst_files, lst_files_filter, 'X' ) # rename files with 'X' in the end
-
-elif option == '2':
-    #Rename files back
-    lst_files = listFiles( path_mod, file_exts_x ) # files to rename back
-    renFiles_back( path_mod, lst_files, file_exts_x )
-
-elif option == '3':
-    # check for _X-files
-    files = listFiles( path_mod, file_exts_x ) # files to rename back
-    if files:
-        print( 'Your mod folder contains remaned files! Renaming them back... ' )
-        renFiles_back( path_mod, files, file_exts_x )
-
-    #Creates a new config
-    createCfg( path_mod, file_exts )
-
-elif option == '4':
-    # open MiniModManager in the file manager
-    print( 'Opening MiniModManager in your file manager...' )
-    print( '>>>' )
-    subprocess.Popen('explorer ' + path_man)
-    print( 'Done!' )
-
-elif option == '5':
-    # open Mods directory in the file manager
-    print( 'Opening Mods directory in your file manager...' )
-    print( '>>>' )
-    subprocess.Popen('explorer ' + path_mod)
-    print( 'Done!' )
-
-elif option == '6':
-    # open Saves directory in the file manager
-    print( 'Opening Saves directory in your file manager...' )
-    print( '>>>' )
-    subprocess.Popen('explorer ' + path_sav)
-    print( 'Done!' )
-
-elif option == '7':
-    # block all files
-    print( 'Blocking all files...' )
-    # List the files
-    lst_files = listFiles( path_mod, file_exts ) # list all files in the directory
-    renFiles( path_mod, lst_files, lst_files, 'X' ) # rename files with 'X' in the end
-    print( 'Done!' )
-
-else:
-    print( 'Nothing was done.' )
-
-# Exit
-input("\nHit ENTER to exit.")
-
-#EOF
+# EOF
