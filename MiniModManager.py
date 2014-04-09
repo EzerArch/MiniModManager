@@ -2,12 +2,12 @@
 # This creates a GUI-less mod manager. Main runtime.
 # Released under MIT License
 # TO-DO:
-# 1) Config files must be txt
-# 2) Create config by "current status" in mod directory.
-# 3) Code duplication. Make it simple.
+# 1) Config files must be txt (WIP)
+# 2) Create config by "current status" in mod directory
+# 3) Code duplication. Make it simple
 # 4) Documentation
-# 3) Get rid of EasyGUI.
-# 4) Modularity.
+# 3) Get rid of EasyGUI
+# 4) Modularity (WIP)
 
 # Simple
 print ("\nThis is a Python application.")
@@ -25,6 +25,10 @@ import easygui as eg # EasyGUI
 
 #### FUNCTIONS
 
+# Variables
+fileext_cfg = '.cfg' # config file extension, it can changed later
+
+
 # DEF: generic error
 
 def err():
@@ -39,7 +43,7 @@ Generic error to be displayed to the user.
 
 def cfgMan( path ):
     print( "\n-- Configs available --" )
-    dir_cfg = os.path.join( path, '*.cfg' )
+    dir_cfg = os.path.join( path, '*' + fileext_cfg ) # file filter
     lst_cfgs = glob.glob( dir_cfg )    # Display a list of CFGs
     if lst_cfgs:
         n = 1
@@ -133,7 +137,7 @@ def createCfg( pathdir_mod , file_exts ):
     files = listFiles( pathdir_mod, file_exts )
     cfg_files = eg.multchoicebox(msg='Pick as many items as you like.', title='Choose files', choices=files)
     if cfg_files:
-        cfg_filename = input( "Type a name for the CFG: " ) + '.cfg'
+        cfg_filename = input( "Type a name for the CFG: " ) + fileext_cfg
         pathfile_cfg = os.path.join( pathdir_mod, 'MiniModManager', cfg_filename )
         f = open( pathfile_cfg,'w')
         for line in cfg_files:
