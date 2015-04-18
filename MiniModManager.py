@@ -1,13 +1,13 @@
 # (c) EZER'ARCH - Python script
 # This creates a GUI-less mod manager. Main runtime.
 # Released under MIT License
-# TODO:
-# 1) Config files must be txt (WIP)
-# 2) Create config by "current status" in mod directory
-# 3) Code duplication. Make it simple
-# 4) Documentation
-# 3) Get rid of EasyGUI
-# 4) Modularity (WIP)
+# TODOS:
+# TODO: Config files must be txt (WIP).
+# TODO: Create config by "current status" in mod director.
+# TODO: Code duplication. Make it simple.
+# TODO: Documentation.
+# TODO: Get rid of EasyGUI.
+# TODO: Modularity (WIP).
 
 # Simple
 from builtins import print
