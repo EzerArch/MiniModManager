@@ -1,7 +1,13 @@
-# (c) EZER'ARCH - Python script
-# This creates a GUI-less mod manager. Main runtime.
-# Released under MIT License
-# TODOS:
+#!/usr/bin/env python
+
+"""MiniModManager.py: This creates a GUI-less mod manager. Main runtime."""
+
+__author__ = "Ezer'Arch"
+__copyright__ = "Copyright 2013, ezerarch.com"
+__date__ = "2013-10-23"
+__license__ = "MIT"
+__status__ = "Development"
+
 # TODO: Config files must be txt (WIP).
 # TODO: Create config by "current status" in mod director.
 # TODO: Code duplication. Make it simple.
@@ -9,20 +15,22 @@
 # TODO: Get rid of EasyGUI.
 # TODO: Modularity (WIP).
 
-# Simple
+
+# STARTUP
+
+# Libs
 from builtins import print
-
-print("\nThis is a Python application.")
-print("Created by: Ezer'Arch (www.ezerarch.com)")
-print("Creation date: 2013/10/23")
-
-# LIBS
-
 import os
 import glob
 import subprocess
 import easygui as eg  # EasyGUI
 # import functions as mmm # MMM functions
+
+
+# Welcome message
+print("\nThis is a Python application.")
+print("Created by: Ezer'Arch (www.ezerarch.com)")
+print("Creation date: 2013/10/23")
 
 
 # FUNCTIONS
